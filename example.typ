@@ -1,5 +1,7 @@
 #import "template/conf.typ": conf
 
+// Puedes revisar el archivo template/conf.typ para
+// ver cómo funciona y personalizarlo
 #show: conf.with(
   titulo: "Auxiliar 1",
   subtitulo: "Typst",
