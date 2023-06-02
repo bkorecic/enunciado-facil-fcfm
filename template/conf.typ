@@ -60,10 +60,10 @@
   profesores: (),
   auxiliares: [],
   curso: "",
-  font: "",
+  fuente: "",
   doc,
 ) = {
-  set text(lang: "es", font: font)
+  set text(lang: "es", font: fuente)
   // Formato de headings. Por defecto (P1., P2., etc)
   set heading(numbering: "P1.")
 
