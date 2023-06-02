@@ -60,11 +60,10 @@
   profesores: (),
   auxiliares: [],
   curso: "",
+  font: "",
   doc,
 ) = {
-
-  // Descomentar font para usar fuente de LaTeX
-  set text(lang: "es", /* font: "New Computer Modern" */) 
+  set text(lang: "es", font: font)
   // Formato de headings. Por defecto (P1., P2., etc)
   set heading(numbering: "P1.")
 
