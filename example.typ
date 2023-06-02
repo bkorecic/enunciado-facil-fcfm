@@ -1,12 +1,12 @@
 #import "template/conf.typ": conf
 
 #show: doc => conf(
-  titulo: "Auxiliar 8",
-  subtitulo: "Combinatoria",
+  titulo: "Auxiliar 1",
+  subtitulo: "Typst",
   departamento: "dcc",
-  profesores: ("Andrés Abeliuk", "Jocelyn Simmonds"),
-  auxiliares: ("Carlos Antil", "Blaz Korecic", "Diego Salas", "Lucas Torrealba"),
-  curso: "CC3101 - Matemáticas Discretas para la Computación",
+  profesores: ("Profesor 1",), // Un arreglo de un elemento necesita una coma al final.
+  auxiliares: ("Auxiliar 1", "Auxiliar 2"), 
+  curso: "CC4034 - Composición de documentos",
   doc,
 )
 
