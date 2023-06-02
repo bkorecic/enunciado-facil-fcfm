@@ -1,13 +1,12 @@
 #import "template/conf.typ": conf
 
-#show: doc => conf(
+#show: conf.with(
   titulo: "Auxiliar 1",
   subtitulo: "Typst",
   departamento: "dcc",
   profesores: ("Profesor 1",), // Un arreglo de un elemento necesita una coma al final.
   auxiliares: ("Auxiliar 1", "Auxiliar 2"), 
   curso: "CC4034 - Composición de documentos",
-  doc,
 )
 
 = Sumatorias

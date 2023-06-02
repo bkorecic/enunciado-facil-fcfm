@@ -82,6 +82,15 @@
     #line(length: 100%, stroke: 0.4pt)
   ]
 
+  let profesores-title = "Profesor";
+  let auxiliares-title = "Auxiliar";
+  // Manejar singular o plural dependiendo de la cantidad de profesores/auxiliares
+  if profesores.len() > 1 {
+    profesores-title = profesores-title + "es"
+  }
+  if auxiliares.len() > 1 {
+    auxiliares-title = auxiliares-title + "es"
+  }
   let title = align(center)[
     #grid(row-gutter: 11pt,
       text(22pt, titulo),
@@ -89,8 +98,8 @@
     )
     #v(5pt)
     #grid(row-gutter: 5pt,
-      [*Profesores:* #profesores.join(", ", last: " y ")],
-      [*Auxiliares:* #auxiliares.join(", ", last: " y ")]
+      [*#profesores-title:* #profesores.join(", ", last: " y ")],
+      [*#auxiliares-title:* #auxiliares.join(", ", last: " y ")]
     )
   ]
 
@@ -108,6 +117,4 @@
     title
     doc
   })
-
 }
-
