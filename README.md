@@ -38,13 +38,14 @@ La función `conf` importada desde el template recibe los siguientes parámetros
 | `profesores`   | Arreglo de strings con nombres de los profesores.                                                                                                    |
 | `auxiliares`   | Arreglo de strings con nombres de los auxiliares.                                                                                                    |
 | `curso`        | Código y/o nombre del curso.                                                                                                                         |
+| `fuente`       | Fuente del documento. Por defecto se usa la de Typst, que es "Linux Libertine". Para usar la de LaTeX, escoger "New Computer Modern".                |
 
 ## Cómo usar en la aplicación web
 
 Puedes usar el template en la aplicación web oficial de Typst, que es parecida a Overleaf permitiendo compilar en el navegador y colaborar.
 
 1. Crea una cuenta en [typst.app](https://typst.app) o inicia sesión si ya tienes.
-2. Abre el siguiente enlace: [https://typst.app/project/r-WO92nCx4brK7Qd9qLEPi](https://typst.app/project/r-WO92nCx4brK7Qd9qLEPi).
+2. Abre el siguiente enlace: [https://typst.app/project/rEkvI_3EvV9aP6LlmEJ3BZ](https://typst.app/project/rEkvI_3EvV9aP6LlmEJ3BZ).
 3. Ve al dashboard y verás el template en "Shared with me". Ahí puedes usar el botón de "Duplicate" para crear una copia propia y luego trabajar en ella.
 
 ## Cómo usar de forma local
