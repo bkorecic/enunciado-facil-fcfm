@@ -45,9 +45,8 @@
     #v(1fr)
 
     #grid(columns: (1fr, auto), rows: auto)[][
-      #table(align: left+top, stroke: 0pt, columns: 2, rows: auto, ..member-table-args)
-
-      #set align(left)
+      #grid(columns: 2, rows: auto, row-gutter: 10pt, column-gutter: 5pt, ..member-table-args)
+  
       #for (nombre, fecha) in fechas [
         Fecha de #nombre: #fecha \
       ]

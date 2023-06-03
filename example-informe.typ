@@ -26,4 +26,5 @@
 
 = Informes con Typst
 Parecido a lenguajes como Markdown, puedes escribir para obtener un parrafo, además puedes estilar el texto en *negrita* y _cursiva_.
-asdfs
+
+Con una línea en blanco entre medio comenzamos otro parrafo,
