@@ -1,3 +1,6 @@
+#import "base.typ": *
+#import "informe.typ": *
+
 #let departamentos = (
   adh: (
     nombre: "Área de Humanidades",
@@ -116,4 +119,63 @@
     title
     doc
   })
+}
+
+#let informe(
+  titulo: none,
+  subtitulo: none,
+  tema: none,
+  departamento: "dcc",
+  autores: (), // string o arreglo de strings
+  equipo-docente: (:), // `dict` de content/arreglo de strings
+  curso: "",
+  fechas: (:),
+  lugar: [],
+  fuente: "",
+  portada: portada1,
+  custom-organizacion: none,
+  margenes-portada: (top: 3.5cm),
+  margenes: (top: 3.5cm),
+  front-page-extra: (:),
+  page-extra: (:),
+  doc
+) = {
+  set text(lang: "es", region: "cl", font: fuente)
+  set par(leading: 0.5em)
+  let organizacion = {
+    if custom-organizacion != none {
+      custom-organizacion
+    } else {
+      (
+        "Universidad de Chile",
+        "Facultad de Ciencias Físicas y Matemáticas",
+        departamentos.at(departamento).nombre,
+        curso
+      )
+    }
+  }
+
+  let logo = "logos/" + departamentos.at(departamento).logo
+
+  let miembros = (:)
+  if type(autores) == "string" {
+    miembros.insert("Integrante", autores)
+  } else if autores.len() > 0 {
+    miembros.insert(
+      if autores.len() == 1 {
+        "Integrante"
+      } else {
+        "Integrantes"
+      },
+      autores
+    )
+  }
+  miembros = miembros + equipo-docente
+
+  if margenes != (:) {
+    page-extra.insert("margin", margenes)
+  }
+
+  portada(titulo: titulo, subtitulo: subtitulo, tema: tema, organizacion: organizacion, logo: logo, miembros: miembros, fechas: fechas, lugar: lugar, page-extra: page-extra)
+  doc
 }
