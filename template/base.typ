@@ -25,3 +25,24 @@
     #right-body
   ]
 }
+
+#let base-table-of-contents(body) = [
+  #body
+]
+
+#let base-front-page(page-args, body) = {
+  page(..page-args)[
+    #body
+    #counter(page).update(0) // Limitación de Typst https://typst.app/docs/reference/meta/counter/#methods-step
+  ]
+}
+
+#let base-indice(type, body) = {
+  set text(weight: "regular")
+  if type == "page" {
+    set align(right)
+    body
+  } else {
+    body
+  } 
+}

@@ -1,5 +1,5 @@
 #import "template/conf.typ": informe
-#import "template/informe.typ": portada1
+#import "template/informe.typ": *
 
 #show: informe.with(
   titulo: "Informe 1",
@@ -24,7 +24,50 @@
   portada: portada1, // distintos diseños diposibles (WIP)
 )
 
+#resumen[
+  #lorem(100)
+]
+
+#indice-de-contenidos()
+
 = Informes con Typst
 Parecido a lenguajes como Markdown, puedes escribir para obtener un parrafo, además puedes estilar el texto en *negrita* y _cursiva_.
 
 Con una línea en blanco entre medio comenzamos otro parrafo,
+
+== sub tema
+
+== otro sub tema
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+= otro heading
+#lorem(1000)
+
+#set heading(numbering: none)
+= Heading sin numbering

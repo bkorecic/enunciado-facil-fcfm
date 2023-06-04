@@ -133,15 +133,16 @@
   lugar: [],
   fuente: "",
   portada: portada1,
-  custom-organizacion: none,
+  header: header1,
   margenes-portada: (top: 3.5cm),
   margenes: (top: 3.5cm),
-  front-page-extra: (:),
-  page-extra: (:),
+  // Configuraciones avanzadas:
+  custom-organizacion: none,
+  portada-set-extra: (:),
+  base-header: base-header,
+  base-footer: base-footer,
   doc
 ) = {
-  set text(lang: "es", region: "cl", font: fuente)
-  set par(leading: 0.5em)
   let organizacion = {
     if custom-organizacion != none {
       custom-organizacion
@@ -172,10 +173,20 @@
   }
   miembros = miembros + equipo-docente
 
-  if margenes != (:) {
-    page-extra.insert("margin", margenes)
+  if margenes-portada != (:) {
+    portada-set-extra.insert("margin", margenes-portada)
   }
 
-  portada(titulo: titulo, subtitulo: subtitulo, tema: tema, organizacion: organizacion, logo: logo, miembros: miembros, fechas: fechas, lugar: lugar, page-extra: page-extra)
+  set heading(numbering: "1.")
+  set par(leading: 0.5em, justify: true, linebreaks: "optimized")
+  set text(lang: "es", region: "cl", font: fuente, hyphenate: true)
+
+  if portada != none {
+    set page(..portada-set-extra)
+    portada(titulo: titulo, subtitulo: subtitulo, tema: tema, organizacion: organizacion, logo: logo, miembros: miembros, fechas: fechas, lugar: lugar, base-header: base-header, base-footer: base-footer)
+  }
+
+  set page(header: header1(base-header), footer: footer1(titulo, curso, base-footer), margin: margenes)
+
   doc
 }
