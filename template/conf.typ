@@ -67,6 +67,11 @@
   // Formato de headings. Por defecto (P1., P2., etc)
   set heading(numbering: "P1.")
 
+  if departamento not in departamentos {
+    let valid-opts = departamentos.keys().join(", ")
+    panic("parámetro departamento debe ser una de las siguientes opciones: " + valid-opts)
+  }
+
   let header = [
     #stack(dir: ltr,
       // El primer elemento del header es el texto, apilado usando un stack.
