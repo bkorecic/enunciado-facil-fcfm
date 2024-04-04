@@ -108,16 +108,16 @@
   ]
 
   // Configuración del tamaño de página, márgenes y header
-  style(styles => { // Usamos la función "style" para acceder a los estilos actuales y medir headerHeight correctamente
-    let headerHeight = measure(header, styles).height
-    let headerSep = 20pt // Separación entre header y contenido
+  style(styles => { // Usamos la función "style" para acceder a los estilos actuales y medir header-height correctamente
+    let header-height = measure(header, styles).height
+    let header-sep = 20pt // Separación entre header y contenido
     set page("us-letter", 
       margin: (left: 1in, 
         right: 1in, 
-        top: 0.5in + headerHeight + headerSep, 
+        top: 0.5in + header-height + header-sep, 
         bottom: 1in), 
       header: header, 
-      header-ascent: headerSep)
+      header-ascent: header-sep)
     title
     doc
   })
