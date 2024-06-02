@@ -34,9 +34,8 @@ La función `conf` importada desde el template recibe los siguientes parámetros
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `titulo`       | Título del documento                                                                                                                                 |
 | `subtitulo`    | Subtítulo del documento                                                                                                                              |
+| `titulo-extra` | Arreglo con bloques de contenido adicionales a agregar después del título. Útil para mostrar los nombres del equipo docente.                         |
 | `departamento` | Sigla del departamento asociado al documento. <br> Opciones soportadas: <br> `adh, das, dcc, dfi, dgf, dic, die, dii, dim, dimec, dimin, diqbm, geo` |
-| `profesores`   | Arreglo de strings con nombres de los profesores.                                                                                                    |
-| `auxiliares`   | Arreglo de strings con nombres de los auxiliares.                                                                                                    |
 | `curso`        | Código y/o nombre del curso.                                                                                                                         |
 | `fuente`       | Fuente del documento. Por defecto se usa la de Typst, que es "Linux Libertine". Para usar la de LaTeX, escoger "New Computer Modern".                |
 

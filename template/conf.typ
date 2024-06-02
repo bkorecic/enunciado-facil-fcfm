@@ -57,8 +57,7 @@
   titulo: none,
   subtitulo: none,
   departamento: "dcc",
-  profesores: (),
-  auxiliares: [],
+  titulo-extra: none,
   curso: "",
   fuente: "",
   doc,
@@ -70,6 +69,16 @@
   if departamento not in departamentos {
     let valid-opts = departamentos.keys().join(", ")
     panic("parámetro departamento debe ser una de las siguientes opciones: " + valid-opts)
+  }
+  if titulo-extra != none {
+    if type(titulo-extra) != array {
+      panic("parámetro titulo-extra debe ser una lista")
+    }
+    for elem in titulo-extra {
+      if type(elem) != content {
+        panic("titulo-extra debe ser una lista con elementos de tipo content")
+      }
+    }
   }
 
   let header = [
@@ -86,39 +95,28 @@
     #line(length: 100%, stroke: 0.4pt)
   ]
 
-  let profesores-title = "Profesor";
-  let auxiliares-title = "Auxiliar";
-  // Manejar singular o plural dependiendo de la cantidad de profesores/auxiliares
-  if profesores.len() > 1 {
-    profesores-title = profesores-title + "es"
-  }
-  if auxiliares.len() > 1 {
-    auxiliares-title = auxiliares-title + "es"
-  }
   let title = align(center)[
     #grid(row-gutter: 11pt,
       text(22pt, titulo),
       subtitulo
     )
-    #v(5pt)
-    #grid(row-gutter: 5pt,
-      [*#profesores-title:* #profesores.join(", ", last: " y ")],
-      [*#auxiliares-title:* #auxiliares.join(", ", last: " y ")]
-    )
+    #if titulo-extra != none {
+      grid(row-gutter: 5pt,
+        ..titulo-extra
+      )
+    }
   ]
 
   // Configuración del tamaño de página, márgenes y header
-  style(styles => { // Usamos la función "style" para acceder a los estilos actuales y medir header-height correctamente
-    let header-height = measure(header, styles).height
-    let header-sep = 20pt // Separación entre header y contenido
-    set page("us-letter", 
-      margin: (left: 1in, 
-        right: 1in, 
-        top: 0.5in + header-height + header-sep, 
-        bottom: 1in), 
-      header: header, 
-      header-ascent: header-sep)
-    title
-    doc
-  })
+  // Usamos "context" para que el valor sea reactivo y podamos usar measure
+  let header-sep = 20pt // Separación entre header y contenido
+  set page("us-letter", 
+    margin: (left: 1in, 
+      right: 1in, 
+      top: 1in+header-sep, 
+      bottom: 1in), 
+    header: header, 
+    header-ascent: header-sep)
+  title
+  doc
 }
