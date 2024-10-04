@@ -7,7 +7,8 @@
 // - subtitulo (string): Subtítulo del documento
 // - departamento (dictionary): Departamento asociado al documento
 // - titulo-extra (array): Arreglo de contenido para agregar después del subtítulo. Útil para poner el equipo docente.
-// - curso: (string): Nombre del curso asociado al documento
+// - curso (string): Nombre del curso asociado al documento
+// - page-conf (dictionary): Configuracion adicional para pasar a la función page. Puede sobreescribir la del template
 // - doc (content): Documento para aplicar el template
 // -> content
 #let conf(
@@ -16,6 +17,7 @@
   titulo-extra: none,
   departamento: departamentos.dcc,
   curso: "",
+  page-conf: (:),
   doc,
 ) = {
   set text(lang: "es")
@@ -73,13 +75,15 @@
 
   // Configuración del tamaño de página, márgenes y header
   let header-sep = 20pt // Separación entre header y contenido
-  set page("us-letter", 
+  set page(
+    paper: "us-letter", 
     margin: (left: 1in, 
       right: 1in, 
       top: 1in+header-sep, 
       bottom: 1in), 
     header: header, 
-    header-ascent: header-sep)
+    header-ascent: header-sep,
+    ..page-conf)
 
   // La función retorna el título generado seguido del resto
   // del documento
