@@ -53,7 +53,7 @@
           curso
       )),
       // Acá va el logo.
-      align(bottom+right, box(height: 50pt, departamento.logo))
+      align(bottom+right, departamento.logo)
     )
     #v(-5pt)
     #line(length: 100%, stroke: 0.4pt)
