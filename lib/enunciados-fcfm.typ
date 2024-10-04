@@ -63,17 +63,21 @@
     #line(length: 100%, stroke: 0.4pt)
   ]
 
-  let title = align(center)[
-    #grid(row-gutter: 11pt,
-      text(22pt, titulo),
-      subtitulo
-    )
-    #if titulo-extra != none {
-      grid(row-gutter: 5pt,
-        ..titulo-extra
-      )
-    }
-  ]
+  // Hay que ir pusheando los elementos de a uno
+  // porque si son none se crea el espaciado del stack
+  // igual (¿cómo mejorar esto?)
+  let title = (text(22pt, titulo),)
+  if subtitulo != none {
+    title.push(text(14pt, subtitulo))
+  }
+  title = stack(spacing: 6pt, ..title)
+
+  if titulo-extra != none {
+    title = stack(spacing: 12pt, 
+                  title,
+                  stack(spacing: 5pt, ..titulo-extra))
+  }
+  title = align(center, title)
 
   // Configuración del tamaño de página, márgenes y header
   let header-sep = 20pt // Separación entre header y contenido
