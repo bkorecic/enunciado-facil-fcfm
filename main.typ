@@ -1,15 +1,13 @@
-#import "template/conf.typ": conf
+#import "@preview/enunciados-fcfm:0.1.0" as template
 
-// Puedes revisar el archivo template/conf.typ para
-// ver cómo funciona y personalizarlo
-#show: conf.with(
-  titulo: "Auxiliar 1",
-  subtitulo: "Typst",
+#show: template.conf.with(
+  titulo: "Auxiliar 5",
+  subtitulo: "Usando el template",
+  departamento: template.departamentos.dcc,
   titulo-extra: (
-    [*Profesora:* Ada Lovelace],
-    [*Auxiliares:* Grace Hopper y Alan Turing],
+    [*Profesora*: Ada Lovelace],
+    [*Auxiliares*: Grace Hopper y Alan Turing],
   ),
-  departamento: "dcc",
   curso: "CC4034 - Composición de documentos",
 )
 
