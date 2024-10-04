@@ -1,34 +1,48 @@
-# Typst FCFM
+# Enunciados FCFM
 
 > Typst es software relativamente nuevo que está creciendo muy rápidamente.
 > Por lo tanto, no puedo asegurar retrocompatibilidad entre versiones del template.
 
 Template de Typst para documentos de la FCFM (auxiliares, controles, pautas)
 
-Puedes ver un ejemplo de documento en [example.pdf](example.pdf).
-
 ## Ejemplo de uso
 
-```typ
-#import "template/conf.typ": conf
+### En [typst.app](https://typst.app)
 
-#show: conf.with(
+Si utilizas la aplicación web oficial, puedes presionar "Start from template" y buscar "enunciados-fcfm" para crear un proyecto ya inicializado con el template.
+
+### En CLI
+
+Si usas Typst de manera local, puedes ejecutar:
+```sh
+typst init @preview/enunciados-fcfm:0.1.0
+```
+lo cual inicializará un proyecto usando el template en el directorio actual.
+
+### Manualmente
+
+Basta crear un archivo con el siguiente contenido para usar el template:
+
+```typ
+#import "@preview/enunciados-fcfm:0.1.0" as template
+
+#show: template.conf.with(
   titulo: "Auxiliar 1",
   subtitulo: "Typst",
   titulo-extra: (
-    [*Profesora:* Ada Lovelace],
-    [*Auxiliares:* Grace Hopper y Alan Turing],
+    [*Profesora*: Ada Lovelace],
+    [*Auxiliares*: Grace Hopper y Alan Turing],
   ),
-  departamento: "dcc",
+  departamento: template.departamentos.dcc,
   curso: "CC4034 - Composición de documentos",
 )
 
 ...el resto del documento comienza acá
 ```
 
-Puedes ver un ejemplo más completo en [example.typ](example.typ). Para aprender la sintáxis de Typst existe la [documentación oficial](https://typst.app/docs).
+Puedes ver un ejemplo más completo en [main.typ](template/main.typ). Para aprender la sintáxis de Typst existe la [documentación oficial](https://typst.app/docs). Si vienes desde LaTeX, te recomiendo la [guía para usuarios de LaTeX](https://typst.app/docs/guides/guide-for-latex-users/).
 
-## Parámetros de configuración
+## Configuración
 
 La función `conf` importada desde el template recibe los siguientes parámetros:
 
@@ -37,19 +51,61 @@ La función `conf` importada desde el template recibe los siguientes parámetros
 | `titulo`       | Título del documento                                                                                                                                 |
 | `subtitulo`    | Subtítulo del documento                                                                                                                              |
 | `titulo-extra` | Arreglo con bloques de contenido adicionales a agregar después del título. Útil para mostrar los nombres del equipo docente.                         |
-| `departamento` | Sigla del departamento asociado al documento. <br> Opciones soportadas: <br> `adh, das, dcc, dfi, dgf, dic, die, dii, dim, dimec, dimin, diqbm, geo` |
-| `curso`        | Código y/o nombre del curso.                                                                                                                         |
-| `fuente`       | Fuente del documento. Por defecto se usa la de Typst, que es "Linux Libertine". Para usar la de LaTeX, escoger "New Computer Modern".                |
+| `departamento` | Diccionario que contiene el nombre (`string`) y el logo del departamento (`content`). El template viene con uno ya creado para cada departamento bajo `template.departamentos`. Valor por defecto: `template.departamentos.dcc`|
+| `curso`        | Código y/o nombre del curso.          |
+| `page-conf`    | Diccionario con parámetros adicionales (tamaño de página, márgenes, etc) para pasarle a la función [page](https://typst.app/docs/reference/layout/page/).|
 
-## Cómo usar en la aplicación web
+## FAQ
 
-Puedes usar el template en la aplicación web oficial de Typst, que es parecida a Overleaf permitiendo compilar en el navegador y colaborar.
+### Cómo cambiar el logo del departamento
 
-1. Crea una cuenta en [typst.app](https://typst.app) o inicia sesión si ya tienes.
-2. Abre el siguiente enlace: [https://typst.app/project/rEkvI_3EvV9aP6LlmEJ3BZ](https://typst.app/project/rEkvI_3EvV9aP6LlmEJ3BZ).
-3. Ve al dashboard y verás el template en "Shared with me". Ahí puedes usar el botón de "Duplicate" para crear una copia propia y luego trabajar en ella.
+El parámetro `departamento` solamente es un diccionario de Typst con las llaves `nombre` y `logo`. Puedes crear un diccionario con un logo personalizado y pasárselo al template:
 
-## Cómo usar de forma local
+```typ
+#import "@preview/enunciados-fcfm:0.1.0" as template
 
-Además, como es open source, puedes [instalar Typst CLI](https://github.com/typst/typst#installation) en tu computador, clonar el repositorio y trabajar de manera local
-en algún editor. Adicionalmente, puedes instalar un [LSP](https://github.com/nvarner/typst-lsp).
+#let mi-departamento = (
+  nombre: "Mi súper departamento personalizado",
+  logo: image("mi-super-logo.png"),
+)
+
+#show: template.conf.with(
+  titulo: "Documento con logo personalizado",
+  departamento: mi-departamento,
+  curso: "CC4034 - Composición de documentos",
+)
+```
+
+### Cómo cambiar márgenes, tamaño de página, etcétera
+
+Para cambiar la configuración de la página hay que interceptar la [set rule](https://typst.app/docs/reference/styling/#set-rules) que se hace sobre `page`. Para ello, el template expone el parámetro `page-conf` que permit sobreescribir la configuración de página del template. Por ejemplo, para cambiar el tamaño del papel a A4:
+
+```typ
+#import "@preview/enunciados-fcfm:0.1.0" as template
+
+#show: template.conf.with(
+  titulo: "Documento con tamaño A4",
+  departamento: template.departamentos.dcc,
+  curso: "CC4034 - Composición de documentos",
+  page-conf: (paper: "a4")
+)
+```
+
+### Cómo cambiar la fuente, headings, etc
+
+Usando [show y set rules](https://typst.app/docs/reference/styling/) puedes personalizar mucho más el template. Por ejemplo, para cambiar la fuente:
+
+```typ
+#import "@preview/enunciados-fcfm:0.1.0" as template
+
+// En este caso hay que cambiar la fuente
+// antes de que se configure el template
+// para que se aplique en el título y encabezado
+#set text(font: "New Computer Modern")
+
+#show: template.conf.with(
+  titulo: "Documento con la fuente de LaTeX",
+  departamento: template.departamentos.dcc,
+  curso: "CC4034 - Composición de documentos",
+)
+```
