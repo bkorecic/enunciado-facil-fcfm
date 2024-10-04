@@ -5,6 +5,7 @@ entrypoint = "lib/enunciados-fcfm.typ"
 authors = ["Blaz Korecic <@bkorecic>"]
 license = "MIT"
 description = "Template de hojas de ejercicios (enunciados de auxiliares, tareas, controles y pautas) para la Facultad de Ciencias Físicas y Matemáticas de la Universidad de Chile (FCFM)"
+repository = "https://github.com/bkorecic/enunciados-fcfm"
 keywords = ["fcfm", "problemset", "worksheet", "uchile", "Universidad de Chile", "enunciados", "problemas", "homework", "es", "español", "spanish"]
 
 [template]
