@@ -21,8 +21,10 @@
   doc,
 ) = {
   set text(lang: "es")
-  // Formato de headings. Por defecto (P1., P2., etc)
+  // Formato de headings. Por defecto P1, P2, etc
   set heading(numbering: "P1.")
+  // Formato de enums. Por defecto a) b) c) etc
+  set enum(numbering: "ai)")
 
   // Chequeo de tipos para departamento
   if type(departamento) != dictionary {
