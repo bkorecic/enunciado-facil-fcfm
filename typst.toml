@@ -1,7 +1,7 @@
 [package]
 name = "enunciados-fcfm"
 version = "0.1.0"
-entrypoint = "enunciados-fcfm.typ"
+entrypoint = "lib/enunciados-fcfm.typ"
 authors = ["Blaz Korecic <@bkorecic>"]
 license = "MIT"
 description = "Template de hojas de ejercicios (enunciados de auxiliares, tareas, controles y pautas) para la Facultad de Ciencias Físicas y Matemáticas de la Universidad de Chile (FCFM)"

@@ -72,13 +72,14 @@
   ]
 
   // Configuración del tamaño de página, márgenes y header
+  let header-sep = 20pt // Separación entre header y contenido
   set page("us-letter", 
     margin: (left: 1in, 
       right: 1in, 
       top: 1in+header-sep, 
       bottom: 1in), 
     header: header, 
-    header-ascent: 20pt)
+    header-ascent: header-sep)
 
   // La función retorna el título generado seguido del resto
   // del documento
