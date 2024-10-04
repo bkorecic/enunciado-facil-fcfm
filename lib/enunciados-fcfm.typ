@@ -13,8 +13,8 @@
 #let conf(
   titulo: none,
   subtitulo: none,
-  departamento: departamentos.dcc,
   titulo-extra: none,
+  departamento: departamentos.dcc,
   curso: "",
   doc,
 ) = {

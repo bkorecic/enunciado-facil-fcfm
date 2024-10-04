@@ -3,11 +3,11 @@
 #show: template.conf.with(
   titulo: "Auxiliar 5",
   subtitulo: "Usando el template",
-  departamento: template.departamentos.dcc,
   titulo-extra: (
     [*Profesora*: Ada Lovelace],
     [*Auxiliares*: Grace Hopper y Alan Turing],
   ),
+  departamento: template.departamentos.dcc,
   curso: "CC4034 - Composición de documentos",
 )
 
